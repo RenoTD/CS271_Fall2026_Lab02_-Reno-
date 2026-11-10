@@ -1,5 +1,5 @@
 # Lab 02 My Answers
-**Student Name:** YOUR NAME HERE
+**Student Name:** Toby Reno
 
 ---
 
@@ -46,19 +46,19 @@ Hex encoding (from disassembly log): `0x`
 
 Binary (32-bit):
 ```
-_    _    _    _    _    _    _    _
-____ ____ ____ ____ ____ ____ ____ ____
+d    2    8    0    0    0    a    0
+1101 0010 1000 0000 0000 0000 1010 0000
 ```
 
 | 31 | 30-29 | 28-23  | 22-21 | 20-5  | 4-0 |
 |----|-------|--------|-------|-------|-----|
 | sf | 10    | 100101 | hw    | imm16 | Rd  |
-|    |       |        |       |       |     |
+|  1 | 10    | 100101 | 00    | 000000000000101 | 00000 |
 
-- `sf` =
-- `hw` =
-- `imm16` =
-- `Rd` =
+- `sf` = 1
+- `hw` = 00
+- `imm16` = 000000000000101
+- `Rd` = 00000
 
 ---
 
@@ -68,18 +68,18 @@ Hex encoding (from disassembly log): `0x`
 
 Binary (32-bit):
 ```
-_    _    _    _    _    _    _    _
-____ ____ ____ ____ ____ ____ ____ ____
+8    b    0    0    0    0    8    4
+1000 1011 0000 0000 0000 0000 1000 0100
 ```
 
 | 31 | 30 | 29 | 28-24 | 23-22 | 21 | 20-16 | 15-10 | 9-5 | 4-0 |
-|----|----|----|-------|-------|---|-------|-------|-----|-----|
+|----|----|----|-------|-------|----|-------|-------|-----|-----|
 | sf | op | S  | 01011 | shift | 0  | Rm    | imm6  | Rn  | Rd  |
-|    |    |    |       |       |   |       |       |     |     |
+|  1 | 0  | 0  | 01011 | 00    | 0  | 0000  | 00000 |00100|00100|
 
-- `Rm` (binary) =
-- `Rn` (binary) =
-- `Rd` (binary) =
+- `Rm` (binary) = 00000
+- `Rn` (binary) = 00100
+- `Rd` (binary) = 00100
 
 ---
 
@@ -89,17 +89,18 @@ Hex encoding (from disassembly log): `0x`
 
 Binary (32-bit):
 ```
-_    _    _    _    _    _    _    _
-____ ____ ____ ____ ____ ____ ____ ____
+e    b    0    1    0    0    0    0
+1110 1011 0000 0001 0000 0000 0000 0000
 ```
 
 | 31 | 30 | 29 | 28-24 | 23-22 | 21 | 20-16 | 15-10 | 9-5 | 4-0 |
-|----|----|----|-------|-------|---|-------|-------|-----|-----|
+|----|----|----|-------|-------|----|-------|-------|-----|-----|
 | sf | op | S  | 01011 | shift | 0  | Rm    | imm6  | Rn  | Rd  |
-|    |    |    |       |       |   |       |       |     |     |
+|  1 |  1 | 1  | 01011 |   00  | 0  | 00001 | 000000|00000|00000|
 
 Compare the `op` and `S` bits to `ADD` above:
 - How does the encoding differ to signal that condition flags should be updated?
+    Converting the S to one indicates that the condition flag should be updated.
 
 ---
 
@@ -109,19 +110,19 @@ Hex encoding (from disassembly log): `0x`
 
 Binary (32-bit):
 ```
-_    _    _    _    _    _    _    _
-____ ____ ____ ____ ____ ____ ____ ____
+5    4    f    f    f    f    a    1
+0101 0100 1111 1111 1111 1111 1010 0001
 ```
 
 | 31-24    | 23-5  | 4 | 3-0  |
 |----------|-------|---|------|
 | 01010100 | imm19 | 0 | cond |
-|          |       |   |      |
+| 01010100 | 1111111111111111101 | 0 | 0001 |
 
-- `imm19` (binary) =
-- `imm19` as a two's complement integer =
+- `imm19` (binary) = 1111111111111111101
+- `imm19` as a two's complement integer = 0000000000000000011
 - Byte offset (imm19 × 4) =
-- `B.NE` address (from disassembly) =
+- `B.NE` address (from disassembly) = 54ffffa1
 - `sum_loop` address (from disassembly) =
 - Do they match?
 
